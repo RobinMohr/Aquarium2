@@ -24,33 +24,10 @@ namespace Aquarium2
 
         }
 
-        public static string[,] Aquarium_Creation()
+        public static string[,] Aquarium_Creation(Aquarium a)
         {
-            Aquarium a = new Aquarium();            
             
-            do
-            {
-                Console.WriteLine("Wie groß soll dein Aquarium sien?", "Höhe:");
-                a.Aquarium_Height = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Länge:");
-                a.Aquarium_Lenght = Convert.ToInt32(Console.ReadLine());
-
-                if (a.Aquarium_Height <5 || a.Aquarium_Lenght< 5)
-                {
-                    Console.WriteLine("Deine Werte waren zu klein, bitte gib mindestens 5 x 5 ein");
-                    Console.ReadKey();
-                }
-
-                else
-                {
-                    break;
-                }
-            } while (true);
-
-            int num = a.Aquarium_Height - 1;
-
-            Console.Clear();
-
+            
             string[,] aquarium = new string[a.Aquarium_Height,a.Aquarium_Lenght];
 
             for (int i = 0; i < a.Aquarium_Height; i++)
@@ -75,24 +52,25 @@ namespace Aquarium2
                     else
                     {
                         aquarium[i, j] = " ";
-                    }                    
+                    }
                 }
             }
+            a.Aquarium_Itself = aquarium;
             return aquarium;
         }
 
         public static void Aquarium_Printing(string[,] aquarium)
         {
+            Console.Clear();
+
             for (int i = 0; i < aquarium.GetLength(0); i++)
             {
                 for (int j = 0; j < aquarium.GetLength(1); j++)
                 {
-                    Console.Write(aquarium[i,j]);                   
+                    Console.Write(aquarium[i,j]);
                 }
-                Console.WriteLine("\n");
-
+                Console.Write("\n");
             }
         }
-            
     }
 }

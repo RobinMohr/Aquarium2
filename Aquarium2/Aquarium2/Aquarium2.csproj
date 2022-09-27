@@ -44,8 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aquarium.cs" />
+    <Compile Include="FBlowfish.cs" />
+    <Compile Include="FCarp.cs" />
+    <Compile Include="Fishes.cs" />
+    <Compile Include="FSwordfish.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FShark.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
