@@ -10,6 +10,11 @@ namespace Aquarium2
     {
         static void Main(string[] args)
         {
+            string[,] a = Aquarium.Aquarium_Creation();
+            Aquarium.Aquarium_Printing(a);
+
+            Console.ReadKey();
+
         }
     }
 }
