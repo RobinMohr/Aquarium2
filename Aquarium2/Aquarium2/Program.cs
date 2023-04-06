@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Aquarium2
 {
@@ -44,42 +42,60 @@ namespace Aquarium2
                 }
             } while (true);
 
-            a.Aquarium_Itself =  Aquarium.Aquarium_Creation(a);
-
-            int xpos1 = r.Next(4, a.Aquarium_Lenght - 4);
-            int ypos1 = r.Next(1, a.Aquarium_Height - 2);
-
-            int xpos2 = r.Next(11, a.Aquarium_Lenght - 11);
-            int ypos2 = r.Next(1, a.Aquarium_Height - 2);
-
-            int xpos3 = r.Next(6, a.Aquarium_Lenght - 6);
-            int ypos3 = r.Next(1, a.Aquarium_Lenght - 2);
-
-            int xpos4 = r.Next(5, a.Aquarium_Lenght - 5);
-            int ypos4 = r.Next(1, a.Aquarium_Lenght - 2);
+            a.Aquarium_Itself = Aquarium.Aquarium_Creation(a);
 
             List<Fishes> fishes = new List<Fishes>();
-
-            FCarp fish1 = new FCarp(ypos1,xpos1);
-            FShark fish2 = new FShark(ypos2,xpos2);
-            FBlowfish fish3 = new FBlowfish(ypos3, xpos3);
-            FSwordfish fish4 = new FSwordfish(ypos4, xpos4);
-
-            fishes.Add(fish1);
-            fishes.Add(fish2);
-            fishes.Add(fish3);
-            fishes.Add(fish4);
-
-            foreach(Fishes f in fishes)
+            Console.WriteLine("Wie viele Karpfen möchtest du hinzufügen?");
+            int carp_count = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < carp_count; i++)
             {
-                int looking = Convert.ToInt32(r.Next(0, 2));
-                a.Aquarium_Itself = Fishes.Fishes_Added(f, a.Aquarium_Itself,looking);
+                FCarp fish1 = new FCarp(r.Next(4, a.Aquarium_Lenght - 4), r.Next(1, a.Aquarium_Height - 2));
+                fishes.Add(fish1);
             }
 
-           
-           
+            Console.WriteLine("Wie viele Haie möchtest du hinzufügen?");
+            int shark_count = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < shark_count; i++)
+            {
+                FShark fish2 = new FShark(r.Next(11, a.Aquarium_Lenght - 11), r.Next(1, a.Aquarium_Height - 2));
+                fishes.Add(fish2);
+            }
+
+            Console.WriteLine("Wie viele KugelFische möchtest du hinzufügen?");
+            int blowfish_count = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < blowfish_count; i++)
+            {
+                FBlowfish fish3 = new FBlowfish(r.Next(6, a.Aquarium_Lenght - 6), r.Next(1, a.Aquarium_Lenght - 2));
+                fishes.Add(fish3);
+            }
+
+            Console.WriteLine("Wie viele Schwertfische möchtest du hinzufügen?");
+            int swordfish_count = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < swordfish_count; i++)
+            {
+                FSwordfish fish4 = new FSwordfish(r.Next(5, a.Aquarium_Lenght - 5), r.Next(1, a.Aquarium_Lenght - 2));
+                fishes.Add(fish4);
+            }
+
+            foreach (Fishes fish_ in fishes)
+            {
+                a.Aquarium_Itself = Fishes.Fishes_Added(fish_, a.Aquarium_Itself);
+            }
+
+
 
             Aquarium.Aquarium_Printing(a.Aquarium_Itself);
+            do
+            {
+                a.Aquarium_Itself = Fishes.Fish_UpOrDown(a.Aquarium_Itself, fishes, a.Aquarium_Height);
+                a.Aquarium_Itself = Fishes.Fish_Movement(a.Aquarium_Itself, fishes);
+                Aquarium.Aquarium_Printing(a.Aquarium_Itself);
+                Thread.Sleep(200);
+
+            } while (true);
+
+
+
 
 
 

@@ -38,20 +38,28 @@ namespace Aquarium2
                     {
                         if (i == a.Aquarium_Height - 1)
                         {
-                            aquarium[i, j] = "+";
+                            if (j == 0)
+                            {
+                                aquarium[i, j] = "╚";
+                            }
+                            else if (j == a.Aquarium_Lenght - 1)
+                            {
+                                aquarium[i, j] = "╝";
+                            }
+                            
                         }
                         else
                         {
-                            aquarium[i, j] = "|";
+                            aquarium[i, j] = "║";
                         }
                     }
                     else if (i == a.Aquarium_Height - 1)
                     {
-                        aquarium[i, j] = "-";
+                        aquarium[i, j] = "═";
                     }
                     else
                     {
-                        aquarium[i, j] = " ";
+                        aquarium[i, j] = "~";
                     }
                 }
             }
@@ -67,10 +75,21 @@ namespace Aquarium2
             {
                 for (int j = 0; j < aquarium.GetLength(1); j++)
                 {
-                    Console.Write(aquarium[i,j]);
+                    if (aquarium[i, j] == "~")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                    }
+
+                    Console.Write(aquarium[i, j]);
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 Console.Write("\n");
             }
         }
+
+        //public static string[,] Aquarium_Renew(string[,])
+        //{
+
+        //}
     }
 }

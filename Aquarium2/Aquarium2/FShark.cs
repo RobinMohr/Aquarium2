@@ -14,7 +14,7 @@ namespace Aquarium2
             Look = "<///====><";
             Direction = true;
             LeftLook = "<///====><";
-            RightLook = "><====///>";
+            RightLook = @"><====\\\>";
             Size = 10;
             MovementPropability = 25;
             XPos = xPos;
